@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html ng-app="gemStore">
+
+	<head>
+		<title>Flatlander's Gem Store</title>
+		<meta charset="UTF-8"/>
+		<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"/>
+		<link rel="stylesheet" type="text/css" href="custom.css"/>
+	</head>
+
+	<body class="container" ng-controller="StoreController as store">
+
+		<!--  App Title  -->
+		<hgroup id="app-title-wr" class="text-center">
+			<h1 id="app-title">Flatlander's Gem Store</h1>
+			<h2 id="app-subtitle">Code School - Shaping up with Angular.js </h2>
+		</hgroup>
+
+		<!--  Products Container  -->
+		<div class="list-group">
+
+			<!--  Product Container  -->
+			<div class="list-group-item card" ng-repeat="product in store.products | orderBy:'-price'">
+				
+				<h3>
+					{{product.name}}
+					<em class="pull-right">{{product.price | currency}}</em>
+				</h3>
+
+				<button ng-show="product.canPurchase">Add to Cart</button>
+
+				<!-- Image Gallery  -->
+				<section class="gallery" ng-show="product.images && product.images.length" ng-controller="GalleryController as gallery">
+
+					<img class="img center-block" ng-src="{{product.images[gallery.current]}}" />
+
+					<ul class="clearfix thumbails">
+						<li class="pull-left" ng-repeat="image in product.images">
+							<a ng-click="gallery.setCurrent($index)" href>
+								<img class="small-image" ng-src="{{image}}" />
+							</a>
+						</li>
+					</ul>
+
+				</section>
+
+				<section class="tab" ng-controller="TabController as tab">
+
+					<ul class="nav nav-pills">
+						<li ng-class="{active:tab.isSet(0)}">
+							<a ng-click="tab.setCurrent(0)" href>Description</a>
+						</li>
+						<li ng-class="{active:tab.isSet(1)}">
+							<a ng-click="tab.setCurrent(1)" href>Specs</a>
+						</li>
+						<li ng-class="{active:tab.isSet(2)}">
+							<a ng-click="tab.setCurrent(2)" href>Reviews</a>
+						</li>
+					</ul>
+
+					<div ng-show="tab.isSet(0)">
+						<h4>Description</h4>
+						<p class="text-justify">{{product.description}}</p>
+					</div>
+
+					<div ng-show="tab.isSet(1)">
+						<h4>Specs</h4>
+						<blockquote>Shine: {{product.shine}}</blockquote>
+					</div>
+
+					<div ng-show="tab.isSet(2)">
+						<h4>Reviews</h4>
+						<blockquote></blockquote>
+					</div>
+
+				</section>
+
+			</div>
+
+		</div>
+
+		<!--  Scripts  -->
+		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.2/angular.min.js"></script>
+		<script type="text/javascript" src="app.js"></script>
+
+	</body>
+
+</html>

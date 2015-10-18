@@ -1,0 +1,34 @@
+/* BOOTSTRAP OVERRIDES ///////////////////////////////////////////////////////*/
+
+.container {
+	width: 600px;
+}
+
+@media (max-width: 600px) {
+	.container {
+		width: 100%;
+	}
+
+	.text-justify {
+		text-align: left;
+	}
+}
+
+body {
+	font-family: "Calibri Light", "Avenir Next";
+}
+
+h1, h2, h3 {
+	font-family: "Century Gothic", "Futura";
+	text-transform: uppercase;
+}
+
+/* CUSTOM STYLES  //////7/////////////////////////////////////////////////////*/
+
+#app-title {
+	font-size: 4rem;
+}
+
+#app-subtitle {
+	font-size: 2rem;
+}

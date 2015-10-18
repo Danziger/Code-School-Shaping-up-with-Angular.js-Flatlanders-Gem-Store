@@ -1,0 +1,59 @@
+/* BOOTSTRAP OVERRIDES ///////////////////////////////////////////////////////*/
+
+.container {
+	width: 600px;
+}
+
+@media (max-width: 600px) {
+	.container {
+		width: 100%;
+	}
+
+	.text-justify {
+		text-align: left;
+	}
+}
+
+body {
+	font-family: "Calibri Light", "Avenir Next";
+}
+
+h1, h2, h3, h4 {
+	font-family: "Century Gothic", "Futura";
+	text-transform: uppercase;
+}
+
+/* CUSTOM STYLES  //////7/////////////////////////////////////////////////////*/
+
+#app-title {
+	font-size: 4rem;
+}
+
+#app-subtitle {
+	font-size: 2rem;
+}
+
+.card {
+	border-radius: 2px;
+	margin: .5rem 0 0 0;
+}
+
+.gallery {
+	background: #F9F9F9;
+	margin: 10px -15px 0 -15px;
+	border-top: 1px solid #DDD;
+}
+
+.thumbails {
+	list-style: none;
+	border-top: 1px solid #DDD;
+	padding: .5rem 0;
+	margin: 0;
+}
+
+.small-image {
+	width: 8rem;
+}
+
+
+

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html ng-app="gemStore">
+
+	<head>
+		<title>Flatlander's Gem Store</title>
+		<meta charset="UTF-8"/>
+		<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"/>
+		<link rel="stylesheet" type="text/css" href="custom.css"/>
+	</head>
+
+	<body class="container" ng-controller="StoreController as store">
+
+		<!--  App Title  -->
+		<hgroup id="app-title-wr" class="text-center">
+			<h1 id="app-title">Flatlander's Gem Store</h1>
+			<h2 id="app-subtitle">Code School - Shaping up with Angular.js </h2>
+		</hgroup>
+
+		<!--  Product Container  -->
+		<div ng-repeat="product in store.products" class="product row">
+			<h3>
+				{{product.name}}
+				<em class="pull-right">${{product.price}}</em>
+			</h3>
+
+			<p class="text-justify">{{product.description}}</p>
+
+			<button ng-show="{{product.canPurchase}}">Add to Cart</button>
+		</div>
+
+		<!--  Scripts  -->
+		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.2/angular.min.js"></script>
+		<script type="text/javascript" src="app.js"></script>
+
+	</body>
+
+</html>
