@@ -68,7 +68,12 @@
 
 					<div ng-show="tab.isSet(1)">
 						<h4 class="hidden">Specs</h4>
-						<blockquote>Shine: {{product.shine}}</blockquote>
+						<table class="table table-condensed">
+							<tr ng-repeat="(key, value) in product.specs">
+								<td class="capitalize">{{key}}</td>
+								<td>{{value}}</td>
+							</tr>
+						</table>
 					</div>
 
 					<div ng-show="tab.isSet(2)">

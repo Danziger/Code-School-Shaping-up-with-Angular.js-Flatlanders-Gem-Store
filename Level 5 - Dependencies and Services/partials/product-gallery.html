@@ -1,0 +1,13 @@
+<section class="gallery" ng-show="product.images && product.images.length">
+	<img class="img center-block" ng-src="{{product.images[gallery.current]}}" />
+
+	<div class="thumbails-wr">	
+		<ul class="clearfix thumbails">
+			<li ng-class="{active:gallery.isSet($index)}" class="pull-left" ng-repeat="image in product.images">
+				<a ng-click="gallery.setCurrent($index)" href class="block-link">
+					<img class="small-image" ng-src="{{image}}" />
+				</a>
+			</li>
+		</ul>	
+	</div>
+</section>

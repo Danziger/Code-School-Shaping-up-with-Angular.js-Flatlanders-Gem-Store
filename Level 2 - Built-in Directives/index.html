@@ -62,14 +62,23 @@
 					</ul>
 
 					<div ng-show="tab.isSet(0)">
+						<h4 class="hidden">Description</h4>
 						<p class="text-justify">{{product.description}}</p>
 					</div>
 
 					<div ng-show="tab.isSet(1)">
-						<blockquote>Shine: {{product.shine}}</blockquote>
+						<h4 class="hidden">Specs</h4>
+						<table class="table table-condensed">
+							<tr ng-repeat="(key, value) in product.specs">
+								<td class="capitalize">{{key}}</td>
+								<td>{{value}}</td>
+							</tr>
+						</table>
 					</div>
 
 					<div ng-show="tab.isSet(2)">
+						<h4 class="hidden">Reviews</h4>
+						
 						<blockquote></blockquote>
 					</div>
 

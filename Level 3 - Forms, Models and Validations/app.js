@@ -1,16 +1,23 @@
-(function() {
+/*global angular */
+(function () {
 
-	// DATA:
+	"use strict";
+	
+	var gems, app;
+	
+	// DATA (just a copy from products.js):
 
-	var gems = [{
-		name: 'Azurite',
+	gems = [{
+		name: "Azurite",
 		description: "Some gems have hidden qualities beyond their luster, beyond their shine... Azurite is one of those gems.",
-		shine: 8,
 		price: 110.50,
-		rarity: 7,
-		color: '#CCC',
-		faces: 14,
 		canPurchase: true,
+		specs: {
+			faces: 14,
+			color: "#CCC",
+			rarity: 7,
+			shine: 8
+		},
 		images: [
 			"images/gem-02.gif",
 			"images/gem-05.gif",
@@ -28,14 +35,16 @@
 			createdOn: 1397490980837
 		}]
 	}, {
-		name: 'Bloodstone',
+		name: "Bloodstone",
 		description: "Origin of the Bloodstone is unknown, hence its low value. It has a very high shine and 12 sides, however.",
-		shine: 9,
 		price: 22.90,
-		rarity: 6,
-		color: '#EEE',
-		faces: 12,
 		canPurchase: true,
+		specs: {
+			faces: 12,
+			color: "#EEE",
+			rarity: 6,
+			shine: 9
+		},
 		images: [
 			"images/gem-01.gif",
 			"images/gem-03.gif",
@@ -53,13 +62,15 @@
 			createdOn: 1397490980837
 		}]
 	}, {
-		name: 'Zircon',
+		name: "Zircon",
 		description: "Zircon is our most coveted and sought after gem. You will pay much to be the proud owner of this gorgeous and high shine gem.",
-		shine: 70,
 		price: 1100,
-		rarity: 2,
-		color: '#000',
-		faces: 6,
+		specs: {
+			faces: 6,
+			color: "#000",
+			rarity: 2,
+			shine: 70
+		},
 		images: [
 			"images/gem-06.gif",
 			"images/gem-07.gif",
@@ -85,47 +96,47 @@
 
 	// LOGIC:
 
-	var app = angular.module('gemStore', []);
+	app = angular.module("gemStore", []);
 
-	app.controller('StoreController', function(){
+	app.controller("StoreController", function () {
 		this.products = gems;
 	});
 
-	app.controller('TabController', function() {
+	app.controller("TabController", function () {
 
 		this.current = 0;
 
-		this.setCurrent = function(i) {
+		this.setCurrent = function (i) {
 			this.current = i || 0;
 		};
 
-		this.isSet = function(i) {
-			return i == this.current;
+		this.isSet = function (i) {
+			return i === this.current;
 		};
 	});
 
-	app.controller("GalleryController", function() {
+	app.controller("GalleryController", function () {
 
 		this.current = 0;
 
-		this.setCurrent = function(i) {
+		this.setCurrent = function (i) {
 			this.current = i || 0;
 		};
 
-		this.isSet = function(i) {
-			return i == this.current;
+		this.isSet = function (i) {
+			return i === this.current;
 		};
 	});
 
-	app.controller("ReviewController", function() {
+	app.controller("ReviewController", function () {
 
 		this.review = {};
 		
-		this.addReview = function(product) {
+		this.addReview = function (product) {
 			this.review.createdOn = Date.now();
 			product.reviews.push(this.review);
 			this.review = {};
 		};
 	});
 
-})();
+}());

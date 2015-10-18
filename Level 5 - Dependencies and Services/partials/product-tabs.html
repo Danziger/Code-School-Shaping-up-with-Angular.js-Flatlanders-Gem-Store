@@ -1,0 +1,24 @@
+<section>
+
+	<ul class="nav nav-simple">
+		<li ng-class="{active:tab.isSet(0)}">
+			<a ng-click="tab.setCurrent(0)" href><span>Description</span></a>
+		</li>
+		<li ng-class="{active:tab.isSet(1)}">
+			<a ng-click="tab.setCurrent(1)" href><span>Specs</span></a>
+		</li>
+		<li ng-class="{active:tab.isSet(2)}">
+			<a ng-click="tab.setCurrent(2)" href><span>Reviews</span></a>
+		</li>
+		<li ng-class="{active:tab.isSet(2)}" class="pull-right">
+			<button ng-show="product.canPurchase">Add to Cart</button>
+		</li>
+	</ul>
+
+	<product-description-tab ng-show="tab.isSet(0)"></product-description-tab>
+
+	<product-specs-tab ng-show="tab.isSet(1)"></product-specs-tab>
+
+	<product-reviews-tab ng-show="tab.isSet(2)"></product-reviews-tab>
+
+</section>

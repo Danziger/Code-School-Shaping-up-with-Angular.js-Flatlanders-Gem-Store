@@ -1,0 +1,37 @@
+<h4 class="hidden">Reviews</h4>
+
+<ul class="reviews">
+	<li ng-repeat="review in product.reviews">
+		<blockquote>
+			<b>{{review.stars}} {{review.stars === 1 ? "star" : "stars"}}</b>
+			<p>{{review.body}}</p>
+			<cite class="clearfix">— {{review.author}} on {{review.createdOn | date}}</cite>
+		</blockquote>
+	</li>
+</ul>
+
+<form name="reviewForm" ng-controller="ReviewController as reviewCtrl" ng-submit="reviewForm.$valid && reviewCtrl.addReview(product)" novalidate>
+
+	<blockquote>
+		<b>{{reviewCtrl.review.stars}} {{reviewCtrl.review.stars === 1 ? "star" : "stars"}}</b>
+		<p>{{reviewCtrl.review.body}}</p>
+		<cite class="clearfix">— {{reviewCtrl.review.author}} right now</cite>
+	</blockquote>
+
+	<fieldset class="form-group">
+		<select class="form-control" ng-options="stars for stars in [5,4,3,2,1]"  title="Stars" ng-model="reviewCtrl.review.stars" required>
+			<option value="">Rate the Product</option>
+		</select>
+	</fieldset>
+	<fieldset class="form-group">
+		<textarea class="form-control" placeholder="Write a short review of the product..." title="Review" ng-model="reviewCtrl.review.body" required></textarea>
+	</fieldset>
+	<fieldset class="form-group">
+		<input ng-model="reviewCtrl.review.author" type="email" class="form-control" placeholder="jimmyDean@example.org" title="Email" required/>
+	</fieldset>
+	<div>reviewForm is {{reviewForm.$valid}}</div>
+	<fieldset class="form-group">
+		<input type="submit" class="btn btn-primary pull-right" value="Submit Review" />
+	</fieldset>
+
+</form>
