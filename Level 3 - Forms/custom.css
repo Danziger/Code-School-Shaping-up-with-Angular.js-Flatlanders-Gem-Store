@@ -1,0 +1,167 @@
+/* BOOTSTRAP OVERRIDES ///////////////////////////////////////////////////////*/
+
+.container {
+	width: 600px;
+}
+
+@media (max-width: 600px) {
+	.container {
+		width: 100%;
+	}
+
+	.text-justify {
+		text-align: left;
+	}
+}
+
+body {
+	font-family: "Calibri Light", "Avenir Next";
+}
+
+h1, h2, h3, h4 {
+	font-family: "Century Gothic", "Futura";
+	text-transform: uppercase;
+	font-weight: bold; 
+}
+
+/* CUSTOM STYLES  //////7/////////////////////////////////////////////////////*/
+
+#app-title {
+	font-size: 4rem;
+}
+
+#app-subtitle {
+	font-size: 2rem;
+}
+
+/* CARDS */
+
+.card {
+	border-radius: 2px;
+	margin: .5rem 0 0 0;
+}
+
+/* GALLERY */
+
+.gallery {
+	background: #F9F9F9;
+	border-top: 1px solid #DDD;
+	border-bottom: 1px solid #DDD;
+	margin: 1rem -15px;
+}
+
+.thumbails-wr {
+	border-top: 1px solid #DDD;
+	text-align: center;
+	font-size: 0;
+}
+.thumbails {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	display: inline-block;
+}
+
+.block-link {
+	display: block;
+	padding: .5rem;
+}
+
+.small-image {
+	width: 6rem;
+}
+
+.thumbails > li {
+	position: relative;
+}
+
+.thumbails > li > a > img {
+	opacity: .5;
+}
+
+.thumbails > li:hover > a > img {
+	opacity: 1;
+}
+
+.thumbails > li.active::before,
+.thumbails > li.active::after {
+	content:"";
+	position: absolute;
+	top: 0;
+	left: 50%;
+	border: .5rem solid transparent;
+	margin: -1px 0 0 -.5rem;
+	border-top-color: #F9F9F9;
+}
+
+.thumbails > li.active::before {
+	margin: 0 0 0 -.5rem;
+	border-top-color: #CCC;	
+}
+
+/* TABS */
+
+.nav-simple {
+	font-family: "Century Gothic", "Futura";
+    text-transform: uppercase;
+	font-weight: bold;
+	font-size: 18px;
+	margin: 0 0 1rem 0;
+}
+
+.nav-simple > li {
+	float: left;
+}
+
+.nav-simple > li.pull-right {
+	float: right;
+}
+
+.nav-simple > li > a {
+	color: #000;
+	padding: .5rem 0;
+	margin: 0 1rem 0 0;
+}
+
+.nav-simple > li > button {
+	background: transparent;
+	border: 3px solid #000;
+	text-transform: uppercase;
+	outline: none;
+	height: 38px;
+	padding: 0 .75rem;
+}
+
+.nav-simple > li > button:hover {
+	background: #000;
+	color: #FFF;
+}
+
+.nav-simple > li.active > a, .nav-simple > li > a:hover {
+	background: transparent;
+}
+
+.nav-simple > li > a > span{
+	border-bottom: 3px solid transparent;
+	display: inline-block;
+}
+
+.nav-simple > li.active > a > span, .nav-simple > li > a:hover > span{
+	border-bottom: 3px solid #000;
+}
+
+/* REVIEWS */
+
+.reviews {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+.ng-dirty.ng-invalid {
+	border-color: #FA787E;
+}
+
+.ng-dirty.ng-valid {
+	border-color: #78FA89;
+}

@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html ng-app="gemStore">
+
+	<head>
+		<title>Flatlander's Gem Store</title>
+		<meta charset="UTF-8"/>
+		<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"/>
+		<link rel="stylesheet" type="text/css" href="custom.css"/>
+	</head>
+
+	<body class="container" ng-controller="StoreController as store">
+
+		<!--  App Title  -->
+		<hgroup id="app-title-wr" class="text-center">
+			<h1 id="app-title">Flatlander's Gem Store</h1>
+			<h2 id="app-subtitle">Code School - Shaping up with Angular.js </h2>
+		</hgroup>
+
+		<!--  Products Container  -->
+		<div class="list-group">
+
+			<!--  Product Container  -->
+			<div class="list-group-item card" ng-repeat="product in store.products | orderBy:'-price'">
+				
+				<h3>
+					{{product.name}}
+					<em class="pull-right">{{product.price | currency}}</em>
+				</h3>
+
+				<!-- Image Gallery  -->
+				<section class="gallery" ng-show="product.images && product.images.length" ng-controller="GalleryController as gallery">
+
+					<img class="img center-block" ng-src="{{product.images[gallery.current]}}" />
+
+					<div class="thumbails-wr">	
+						<ul class="clearfix thumbails">
+							<li ng-class="{active:gallery.isSet($index)}" class="pull-left" ng-repeat="image in product.images">
+								<a ng-click="gallery.setCurrent($index)" href class="block-link">
+									<img class="small-image" ng-src="{{image}}" />
+								</a>
+							</li>
+						</ul>	
+					</div>
+
+				</section>
+
+				<section class="tab" ng-controller="TabController as tab">
+
+					<ul class="nav nav-simple">
+						<li ng-class="{active:tab.isSet(0)}">
+							<a ng-click="tab.setCurrent(0)" href><span>Description</span></a>
+						</li>
+						<li ng-class="{active:tab.isSet(1)}">
+							<a ng-click="tab.setCurrent(1)" href><span>Specs</span></a>
+						</li>
+						<li ng-class="{active:tab.isSet(2)}">
+							<a ng-click="tab.setCurrent(2)" href><span>Reviews</span></a>
+						</li>
+						<li ng-class="{active:tab.isSet(2)}" class="pull-right">
+							<button ng-show="product.canPurchase">Add to Cart</button>
+						</li>
+					</ul>
+
+					<div ng-show="tab.isSet(0)">
+						<h4 class="hidden">Description</h4>
+						<p class="text-justify">{{product.description}}</p>
+					</div>
+
+					<div ng-show="tab.isSet(1)">
+						<h4 class="hidden">Specs</h4>
+						<blockquote>Shine: {{product.shine}}</blockquote>
+					</div>
+
+					<div ng-show="tab.isSet(2)">
+						<h4 class="hidden">Reviews</h4>
+						
+						<ul class="reviews">
+							<li ng-repeat="review in product.reviews">
+								<blockquote>
+									<b>{{review.stars}} {{review.stars === 1 ? "star" : "stars"}}</b>
+									<p>{{review.body}}</p>
+									<cite class="clearfix">— {{review.author}} on {{review.createdOn | date}}</cite>
+								</blockquote>
+							</li>
+						</ul>
+						
+						<form name="reviewForm" ng-controller="ReviewController as reviewCtrl" ng-submit="reviewForm.$valid && reviewCtrl.addReview(product)" novalidate>
+												
+							<blockquote>
+								<b>{{reviewCtrl.review.stars}} {{reviewCtrl.review.stars === 1 ? "star" : "stars"}}</b>
+								<p>{{reviewCtrl.review.body}}</p>
+								<cite class="clearfix">— {{reviewCtrl.review.author}} right now</cite>
+							</blockquote>
+						
+							<fieldset class="form-group">
+								<select class="form-control" ng-options="stars for stars in [5,4,3,2,1]"  title="Stars" ng-model="reviewCtrl.review.stars" required>
+									<option value="">Rate the Product</option>
+								</select>
+							</fieldset>
+							<fieldset class="form-group">
+								<textarea class="form-control" placeholder="Write a short review of the product..." title="Review" ng-model="reviewCtrl.review.body" required></textarea>
+							</fieldset>
+							<fieldset class="form-group">
+								<input ng-model="reviewCtrl.review.author" type="email" class="form-control" placeholder="jimmyDean@example.org" title="Email" required/>
+							</fieldset>
+							<div>reviewForm is {{reviewForm.$valid}}</div>
+							<fieldset class="form-group">
+								<input type="submit" class="btn btn-primary pull-right" value="Submit Review" />
+							</fieldset>
+							
+						</form>
+						
+					</div>
+
+				</section>
+
+			</div>
+
+		</div>
+
+		<!--  Scripts  -->
+		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.2/angular.min.js"></script>
+		<script type="text/javascript" src="app.js"></script>
+
+	</body>
+
+</html>
