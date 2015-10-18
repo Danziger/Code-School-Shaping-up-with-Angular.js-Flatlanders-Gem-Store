@@ -27,49 +27,49 @@
 					<em class="pull-right">{{product.price | currency}}</em>
 				</h3>
 
-				<button ng-show="product.canPurchase">Add to Cart</button>
-
 				<!-- Image Gallery  -->
 				<section class="gallery" ng-show="product.images && product.images.length" ng-controller="GalleryController as gallery">
 
 					<img class="img center-block" ng-src="{{product.images[gallery.current]}}" />
 
-					<ul class="clearfix thumbails">
-						<li class="pull-left" ng-repeat="image in product.images">
-							<a ng-click="gallery.setCurrent($index)" href>
-								<img class="small-image" ng-src="{{image}}" />
-							</a>
-						</li>
-					</ul>
+					<div class="thumbails-wr">	
+						<ul class="clearfix thumbails">
+							<li ng-class="{active:gallery.isSet($index)}" class="pull-left" ng-repeat="image in product.images">
+								<a ng-click="gallery.setCurrent($index)" href class="block-link">
+									<img class="small-image" ng-src="{{image}}" />
+								</a>
+							</li>
+						</ul>	
+					</div>
 
 				</section>
 
 				<section class="tab" ng-controller="TabController as tab">
 
-					<ul class="nav nav-pills">
+					<ul class="nav nav-simple">
 						<li ng-class="{active:tab.isSet(0)}">
-							<a ng-click="tab.setCurrent(0)" href>Description</a>
+							<a ng-click="tab.setCurrent(0)" href><span>Description</span></a>
 						</li>
 						<li ng-class="{active:tab.isSet(1)}">
-							<a ng-click="tab.setCurrent(1)" href>Specs</a>
+							<a ng-click="tab.setCurrent(1)" href><span>Specs</span></a>
 						</li>
 						<li ng-class="{active:tab.isSet(2)}">
-							<a ng-click="tab.setCurrent(2)" href>Reviews</a>
+							<a ng-click="tab.setCurrent(2)" href><span>Reviews</span></a>
+						</li>
+						<li ng-class="{active:tab.isSet(2)}" class="pull-right">
+							<button ng-show="product.canPurchase">Add to Cart</button>
 						</li>
 					</ul>
 
 					<div ng-show="tab.isSet(0)">
-						<h4>Description</h4>
 						<p class="text-justify">{{product.description}}</p>
 					</div>
 
 					<div ng-show="tab.isSet(1)">
-						<h4>Specs</h4>
 						<blockquote>Shine: {{product.shine}}</blockquote>
 					</div>
 
 					<div ng-show="tab.isSet(2)">
-						<h4>Reviews</h4>
 						<blockquote></blockquote>
 					</div>
 
